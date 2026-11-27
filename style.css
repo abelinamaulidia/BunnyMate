@@ -1,0 +1,364 @@
+/* ============================================================
+   BunnyMate – stylesheet
+   ============================================================ */
+
+/* ---------- Tema & variabel warna ---------- */
+:root {
+  --bg: #eef3ea;
+  --card: #fff;
+  --ink: #26332b;
+  --mute: #5e6e63;
+  --line: #d5e0d3;
+  --pri: #3d7a56;
+  --pri-ink: #fff;
+  --hay: #f4dd8f;
+  --ok: #2f7d4f;
+  --warn: #b7791f;
+  --bad: #b5443a;
+
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Ikut preferensi sistem, kecuali pengguna memilih tema terang */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #161d18;
+    --card: #202a23;
+    --ink: #e6efe8;
+    --mute: #9db0a2;
+    --line: #33423a;
+    --pri: #6cc08c;
+    --pri-ink: #10200f;
+    --hay: #6b5d22;
+    --ok: #6cc08c;
+    --warn: #e3b45a;
+    --bad: #ef8b80;
+  }
+}
+
+/* Tema gelap yang dipilih secara manual */
+:root[data-theme="dark"] {
+  --bg: #161d18;
+  --card: #202a23;
+  --ink: #e6efe8;
+  --mute: #9db0a2;
+  --line: #33423a;
+  --pri: #6cc08c;
+  --pri-ink: #10200f;
+  --hay: #6b5d22;
+  --ok: #6cc08c;
+  --warn: #e3b45a;
+  --bad: #ef8b80;
+}
+
+/* ---------- Dasar ---------- */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 16px/1.55 Nunito, system-ui, sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family: Fredoka, Nunito, system-ui, sans-serif;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* ---------- Layar login & identitas pengguna ---------- */
+[hidden] {
+  display: none !important;
+}
+
+.login-screen {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+
+.login-card.card {
+  width: min(420px, 100%);
+  margin: 0;
+}
+
+.login-card h1 {
+  font-size: 1.8rem;
+  margin-bottom: 4px;
+}
+
+.user {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* ---------- Layout ---------- */
+.wrap {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+.scroll {
+  overflow-x: auto;
+}
+
+.two {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 12px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 10px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: end;
+  margin-top: 12px;
+}
+
+/* ---------- Header & navigasi ---------- */
+header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0 16px;
+}
+
+header h1 {
+  font-size: 1.7rem;
+}
+
+header p {
+  margin: 0;
+  color: var(--mute);
+  font-size: 0.9rem;
+}
+
+.role {
+  display: flex;
+  gap: 4px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px;
+}
+
+.role button {
+  border: 0;
+  background: none;
+  color: var(--ink);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.role button[aria-pressed=true] {
+  background: var(--pri);
+  color: var(--pri-ink);
+}
+
+nav {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  margin-bottom: 12px;
+}
+
+nav button {
+  white-space: nowrap;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--ink);
+  padding: 8px 16px;
+  border-radius: 12px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+nav button[aria-selected=true] {
+  background: var(--hay);
+  border-color: transparent;
+}
+
+/* ---------- Tabel ---------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+
+th {
+  color: var(--mute);
+  font-weight: 600;
+}
+
+/* ---------- Form ---------- */
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--mute);
+}
+
+input,
+select,
+textarea {
+  font: inherit;
+  color: var(--ink);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 8px 10px;
+  width: 100%;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--pri);
+  outline-offset: 2px;
+}
+
+/* ---------- Tombol ---------- */
+.btn {
+  border: 0;
+  background: var(--pri);
+  color: var(--pri-ink);
+  font: inherit;
+  font-weight: 700;
+  padding: 9px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.btn.alt {
+  background: none;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+
+.btn.bad {
+  background: var(--bad);
+  color: #fff;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ---------- Teks & status ---------- */
+.hint {
+  font-size: 0.85rem;
+  color: var(--mute);
+  margin: 6px 0 0;
+}
+
+.pill {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border: 1px solid currentColor;
+}
+
+.score {
+  font-family: Fredoka, sans-serif;
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.ok {
+  color: var(--ok);
+}
+
+.warn {
+  color: var(--warn);
+}
+
+.bad {
+  color: var(--bad);
+}
+
+.mute {
+  color: var(--mute);
+}
+
+code {
+  background: var(--bg);
+  padding: 1px 6px;
+  border-radius: 6px;
+}
+
+/* ---------- Dialog & notifikasi ---------- */
+dialog {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--card);
+  color: var(--ink);
+  max-width: 420px;
+  width: calc(100% - 32px);
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%);
+  background: var(--ink);
+  color: var(--bg);
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-weight: 700;
+  z-index: 20;
+}

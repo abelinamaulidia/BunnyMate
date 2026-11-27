@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BunnyMate – Rekomendasi Perkawinan Kelinci</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<section id="login" class="login-screen">
+ <form id="loginForm" class="card login-card">
+  <h1>🐰 BunnyMate</h1>
+  <p class="hint">Masuk untuk membuka dashboard sesuai peran.</p>
+  <div class="grid" style="margin-top:12px">
+   <label>Peran<select id="loginRole"><option value="Owner">Owner</option><option value="Karyawan">Karyawan</option></select></label>
+   <label>Username<input id="loginUser" autocomplete="username" placeholder="owner / karyawan"></label>
+   <label>Password<input id="loginPass" type="password" autocomplete="current-password" placeholder="••••••••"></label>
+  </div>
+  <p id="loginError" class="hint bad" role="alert"></p>
+  <div class="row"><button class="btn" type="submit">Masuk</button></div>
+  <p class="hint">Demo — Owner: <code>owner</code> / <code>owner123</code> · Karyawan: <code>karyawan</code> / <code>karyawan123</code></p>
+ </form>
+</section>
+
+<div class="wrap" id="app" hidden>
+<header>
+ <div><h1>🐰 BunnyMate</h1><p>Rekomendasi kelayakan dan jadwal kawin kelinci · Fuzzy Tsukamoto</p></div>
+ <div class="user">
+  <span class="pill" id="userLabel"></span>
+  <button class="btn alt" id="logout">Keluar</button>
+ </div>
+</header>
+<nav role="tablist">
+ <button role="tab" data-tab="kelinci" aria-selected="true">Data kelinci</button>
+ <button role="tab" data-tab="prediksi" aria-selected="false">Prediksi kecocokan</button>
+ <button role="tab" data-tab="rencana" aria-selected="false">Rencana kawin</button>
+</nav>
+<main id="view"></main>
+</div>
+
+<dialog id="dlg"><form method="dialog" id="dlgForm"><h3 id="dlgTitle"></h3><div id="dlgBody" style="margin:12px 0"></div>
+<div class="row" style="justify-content:flex-end"><button class="btn alt" value="cancel">Batal</button><button class="btn" id="dlgOk" value="ok">Simpan</button></div></form></dialog>
+
+<script src="fuzzy.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
